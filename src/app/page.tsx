@@ -55,25 +55,25 @@ export default function Home() {
           className="w-full h-full relative"
         >
           {/* Driver Portrait Background (Shuffled) */}
-          <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden flex items-center justify-center opacity-70">
-            <AnimatePresence mode="wait">
-              {!isTransitioning && currentImageUrl && (
+          <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden flex items-center justify-center bg-[#050505]">
+            <AnimatePresence>
+              {currentImageUrl && (
                 <motion.img 
                   key={currentImageUrl}
                   src={encodeURI(currentImageUrl)}
                   alt={currentDriver.full_name}
                   initial={{ opacity: 0, scale: 1.05, filter: "blur(20px)" }}
-                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  animate={{ opacity: 0.7, scale: 1, filter: "blur(0px)" }}
                   exit={{ opacity: 0, scale: 0.95, filter: "blur(20px)" }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
-                  className="object-cover w-full h-full"
+                  transition={{ duration: 2, ease: "easeInOut" }}
+                  className="absolute inset-0 object-cover w-full h-full"
                 />
               )}
             </AnimatePresence>
             
             {/* Color Overlay */}
             <div 
-              className="absolute inset-0 mix-blend-multiply opacity-80 transition-colors duration-1000"
+              className="absolute inset-0 mix-blend-multiply opacity-80 transition-colors duration-[2000ms]"
               style={{ backgroundColor: currentDriver.accent }}
             />
           </div>
