@@ -17,7 +17,7 @@ function InitialLoader({ onComplete }: { onComplete: () => void }) {
 
   return (
     <motion.div 
-      exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+      exit={{ opacity: 0, scale: 1.1 }}
       transition={{ duration: 1, ease: "easeInOut" }}
       className="absolute inset-0 z-[100] flex items-center justify-center bg-[#050505]"
     >
@@ -62,7 +62,6 @@ function BackgroundCrossfade({ src, alt }: { src: string, alt: string }) {
               opacity: isCurrent ? 0.7 : 0,
               transition: "opacity 2s ease-in-out, transform 10s ease-out",
               transform: isCurrent ? "scale(1)" : "scale(1.05)",
-              filter: isCurrent ? "blur(0px)" : "blur(10px)",
             }}
           />
         );
