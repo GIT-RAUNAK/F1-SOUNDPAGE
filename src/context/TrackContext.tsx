@@ -81,13 +81,19 @@ export function TrackProvider({ children }: { children: React.ReactNode }) {
 
   const currentDriver = currentDriverIndex >= 0 ? drivers[currentDriverIndex] : null;
 
+  const transitionTimeout1 = React.useRef<NodeJS.Timeout | null>(null);
+  const transitionTimeout2 = React.useRef<NodeJS.Timeout | null>(null);
+
   const playDriverConfiguration = useCallback((driverIndex: number) => {
     if (drivers.length === 0) return;
+    
+    if (transitionTimeout1.current) clearTimeout(transitionTimeout1.current);
+    if (transitionTimeout2.current) clearTimeout(transitionTimeout2.current);
     
     setIsTransitioning(true);
     
     // Allow UI to fade out
-    setTimeout(() => {
+    transitionTimeout1.current = setTimeout(() => {
       setCurrentDriverIndex(driverIndex);
       const driver = drivers[driverIndex];
       
@@ -100,7 +106,7 @@ export function TrackProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Allow UI to fade back in
-      setTimeout(() => {
+      transitionTimeout2.current = setTimeout(() => {
         setIsTransitioning(false);
       }, 500);
     }, 800);

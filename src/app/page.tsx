@@ -35,6 +35,42 @@ function InitialLoader({ onComplete }: { onComplete: () => void }) {
   );
 }
 
+function BackgroundCrossfade({ src, alt }: { src: string, alt: string }) {
+  const [layers, setLayers] = useState([{ id: src + "-init", src }]);
+
+  useEffect(() => {
+    setLayers(prev => {
+      const current = prev[prev.length - 1];
+      if (current.src !== src) {
+        return [...prev.slice(-1), { id: src + "-" + Date.now(), src }];
+      }
+      return prev;
+    });
+  }, [src]);
+
+  return (
+    <>
+      {layers.map((layer, index) => {
+        const isCurrent = index === layers.length - 1;
+        return (
+          <img
+            key={layer.id}
+            src={encodeURI(layer.src)}
+            alt={alt}
+            className="absolute inset-0 object-cover w-full h-full"
+            style={{
+              opacity: isCurrent ? 0.7 : 0,
+              transition: "opacity 2s ease-in-out, transform 10s ease-out",
+              transform: isCurrent ? "scale(1)" : "scale(1.05)",
+              filter: isCurrent ? "blur(0px)" : "blur(10px)",
+            }}
+          />
+        );
+      })}
+    </>
+  );
+}
+
 export default function Home() {
   const { currentDriver, currentImageUrl, isTransitioning, loading: dataLoading } = useTrack();
   const [appReady, setAppReady] = useState(false);
@@ -56,20 +92,9 @@ export default function Home() {
         >
           {/* Driver Portrait Background (Shuffled) */}
           <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden flex items-center justify-center bg-[#050505]">
-            <AnimatePresence>
-              {currentImageUrl && (
-                <motion.img 
-                  key={currentImageUrl}
-                  src={encodeURI(currentImageUrl)}
-                  alt={currentDriver.full_name}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 0.7, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 2, ease: "easeInOut" }}
-                  className="absolute inset-0 object-cover w-full h-full"
-                />
-              )}
-            </AnimatePresence>
+            {currentImageUrl && (
+              <BackgroundCrossfade src={currentImageUrl} alt={currentDriver.full_name} />
+            )}
             
             {/* Color Overlay */}
             <div 
