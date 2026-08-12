@@ -62,9 +62,9 @@ export default function Home() {
                   key={currentImageUrl}
                   src={encodeURI(currentImageUrl)}
                   alt={currentDriver.full_name}
-                  initial={{ opacity: 0, scale: 1.05, filter: "blur(20px)" }}
-                  animate={{ opacity: 0.7, scale: 1, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, scale: 0.95, filter: "blur(20px)" }}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 0.7, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 2, ease: "easeInOut" }}
                   className="absolute inset-0 object-cover w-full h-full"
                 />
@@ -73,7 +73,7 @@ export default function Home() {
             
             {/* Color Overlay */}
             <div 
-              className="absolute inset-0 mix-blend-multiply opacity-80 transition-colors duration-[2000ms]"
+              className="absolute inset-0 opacity-30 transition-colors duration-[2000ms] pointer-events-none"
               style={{ backgroundColor: currentDriver.accent }}
             />
           </div>

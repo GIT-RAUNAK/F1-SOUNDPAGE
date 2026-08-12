@@ -8,9 +8,9 @@ export function DriverInfo() {
   const { currentDriver, isTransitioning, loading } = useTrack();
 
   const titleVariants = {
-    initial: { opacity: 0, y: 40, filter: "blur(10px)", scale: 0.95 },
-    animate: { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 },
-    exit: { opacity: 0, y: -40, filter: "blur(10px)", scale: 1.05 }
+    initial: { opacity: 0, y: 40, scale: 0.95 },
+    animate: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, y: -40, scale: 1.05 }
   };
 
   if (loading || !currentDriver) return null;
