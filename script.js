@@ -67,7 +67,10 @@ async function init() {
       setTimeout(() => {
         document.getElementById('loader').classList.add('hidden');
         document.getElementById('app').classList.remove('hidden');
-        playDriverConfiguration(0);
+        
+        // Pick a random starting driver
+        const startIndex = Math.floor(Math.random() * drivers.length);
+        playDriverConfiguration(startIndex, true);
       }, 2000);
     }
   } catch (err) {

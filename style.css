@@ -214,6 +214,7 @@ body, html {
   width: 100%;
   max-width: 28rem;
   align-self: flex-end;
+  margin-top: auto;
 }
 
 .player-top {
