@@ -134,20 +134,22 @@ function updateDOM(driver) {
 function updateBackgroundFoolproof(imageUrl) {
   if (!imageUrl) return;
 
-  // Toggle active slot
   const nextSlot = activeBgSlot === 1 ? 2 : 1;
   const currentImgNode = activeBgSlot === 1 ? bgSlot1 : bgSlot2;
   const nextImgNode = activeBgSlot === 1 ? bgSlot2 : bgSlot1;
 
-  // Preload new image into the hidden slot
+  // Wait for the new image to fully download before crossfading!
+  nextImgNode.onload = () => {
+    // Crossfade only AFTER the new image is ready
+    nextImgNode.classList.add('active');
+    currentImgNode.classList.remove('active');
+    
+    // Update tracker
+    activeBgSlot = nextSlot;
+  };
+
+  // Start downloading the new image
   nextImgNode.src = encodeURI(imageUrl);
-
-  // Crossfade
-  nextImgNode.classList.add('active');
-  currentImgNode.classList.remove('active');
-
-  // Update tracker
-  activeBgSlot = nextSlot;
 }
 
 // --- Player Controls ---
