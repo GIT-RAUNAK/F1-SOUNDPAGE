@@ -22,9 +22,9 @@ function getDriverNumber(driverName) {
   if (name.includes("LECLERC")) return 16;
   if (name.includes("RUSSELL")) return 63;
   if (name.includes("ANTONELLI")) return 12;
-  if (name.includes("NORRIS")) return 4;
+  if (name.includes("NORRIS")) return 1;
   if (name.includes("PIASTRI")) return 81;
-  if (name.includes("VERSTAPPEN")) return 1;
+  if (name.includes("VERSTAPPEN")) return 3;
   
   if (name.includes("HADJAR")) return 6;
   if (name.includes("LAWSON")) return 30;

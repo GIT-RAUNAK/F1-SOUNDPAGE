@@ -1527,7 +1527,7 @@
         }
       ],
       "accent": "#FF8000",
-      "driver_number": 4
+      "driver_number": 1
     },
     {
       "id": "DRIVER 6 - OSCAR PIASTRI",
@@ -1805,7 +1805,7 @@
         }
       ],
       "accent": "#0600EF",
-      "driver_number": 1
+      "driver_number": 3
     },
     {
       "id": "DRIVER 8 - ISACK HADJAR",
