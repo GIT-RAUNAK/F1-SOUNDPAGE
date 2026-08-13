@@ -79,7 +79,7 @@ async function init() {
 // --- Core Logic ---
 let transitionTimeout1, transitionTimeout2;
 
-function playDriverConfiguration(driverIndex) {
+function playDriverConfiguration(driverIndex, forcePlay = false) {
   if (drivers.length === 0) return;
   
   clearTimeout(transitionTimeout1);
@@ -104,8 +104,11 @@ function playDriverConfiguration(driverIndex) {
     if (currentMusic) {
       audioPlayer.src = encodeURI(currentMusic.url);
       audioPlayer.load();
-      if (isPlaying) {
-        audioPlayer.play().catch(e => console.error("Playback error:", e));
+      if (isPlaying || forcePlay) {
+        const playPromise = audioPlayer.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(e => console.error("Playback error:", e));
+        }
       }
     }
 
@@ -161,16 +164,25 @@ function togglePlay() {
   }
 }
 
+function getRandomDriverIndex() {
+  if (drivers.length <= 1) return 0;
+  let newIndex;
+  do {
+    newIndex = Math.floor(Math.random() * drivers.length);
+  } while (newIndex === currentDriverIndex);
+  return newIndex;
+}
+
 function nextTrack() {
   if (drivers.length === 0) return;
-  const nextIndex = (currentDriverIndex + 1) % drivers.length;
-  playDriverConfiguration(nextIndex);
+  const nextIndex = getRandomDriverIndex();
+  playDriverConfiguration(nextIndex, true);
 }
 
 function prevTrack() {
   if (drivers.length === 0) return;
-  const prevIndex = (currentDriverIndex - 1 + drivers.length) % drivers.length;
-  playDriverConfiguration(prevIndex);
+  const prevIndex = getRandomDriverIndex();
+  playDriverConfiguration(prevIndex, true);
 }
 
 // --- Event Listeners ---
