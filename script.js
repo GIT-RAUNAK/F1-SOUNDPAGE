@@ -130,6 +130,9 @@ function updateDOM(driver) {
 function updateBackground(imageUrl) {
   if (!imageUrl) return;
 
+  // Find old images before adding the new one
+  const oldImages = bgContainer.querySelectorAll('.bg-image');
+
   // Create new image element
   const img = document.createElement('img');
   img.src = encodeURI(imageUrl);
@@ -143,20 +146,14 @@ function updateBackground(imageUrl) {
 
   // Fade in new image
   img.style.opacity = '0.7';
-
-  // Find old images
-  const allImages = bgContainer.querySelectorAll('.bg-image');
   
   // Fade out and remove old images
-  if (allImages.length > 1) {
-    for (let i = 0; i < allImages.length - 1; i++) {
-      const oldImg = allImages[i];
-      oldImg.style.opacity = '0';
-      setTimeout(() => {
-        if (oldImg.parentNode) oldImg.parentNode.removeChild(oldImg);
-      }, 2000); // Wait for transition
-    }
-  }
+  oldImages.forEach(oldImg => {
+    oldImg.style.opacity = '0';
+    setTimeout(() => {
+      if (oldImg.parentNode) oldImg.parentNode.removeChild(oldImg);
+    }, 2000); // Wait for transition
+  });
 }
 
 // --- Player Controls ---
