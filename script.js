@@ -135,7 +135,6 @@ function updateBackground(imageUrl) {
   img.src = encodeURI(imageUrl);
   img.className = 'bg-image';
   img.style.opacity = '0';
-  img.style.transform = 'scale(1.05)';
 
   bgContainer.appendChild(img);
 
@@ -144,7 +143,6 @@ function updateBackground(imageUrl) {
 
   // Fade in new image
   img.style.opacity = '0.7';
-  img.style.transform = 'scale(1)';
 
   // Find old images
   const allImages = bgContainer.querySelectorAll('.bg-image');
