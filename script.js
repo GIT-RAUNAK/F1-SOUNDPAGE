@@ -181,14 +181,14 @@ btnPrev.addEventListener('click', prevTrack);
 // Audio Events
 audioPlayer.addEventListener('play', () => {
   isPlaying = true;
-  iconPlay.setAttribute('data-feather', 'pause');
+  btnPlay.innerHTML = '<i data-feather="pause"></i>';
   feather.replace();
   visualizer.classList.add('active');
 });
 
 audioPlayer.addEventListener('pause', () => {
   isPlaying = false;
-  iconPlay.setAttribute('data-feather', 'play');
+  btnPlay.innerHTML = '<i data-feather="play"></i>';
   feather.replace();
   visualizer.classList.remove('active');
 });
@@ -238,11 +238,11 @@ volumeSlider.addEventListener('input', (e) => {
   audioPlayer.volume = val;
   
   if (val == 0) {
-    iconVolume.setAttribute('data-feather', 'volume-x');
+    btnVolume.innerHTML = '<i data-feather="volume-x"></i>';
   } else if (val < 0.5) {
-    iconVolume.setAttribute('data-feather', 'volume-1');
+    btnVolume.innerHTML = '<i data-feather="volume-1"></i>';
   } else {
-    iconVolume.setAttribute('data-feather', 'volume-2');
+    btnVolume.innerHTML = '<i data-feather="volume-2"></i>';
   }
   feather.replace();
 });
