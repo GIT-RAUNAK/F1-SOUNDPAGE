@@ -27,16 +27,18 @@
   </div>
 
   <main id="app" class="hidden">
-    <!-- Background Crossfader Container -->
-    <div id="bg-container" class="bg-container">
-      <!-- Image elements will be injected here dynamically -->
+    
+    <!-- Background Crossfader (Two-Slot Foolproof System) -->
+    <div class="bg-container">
+      <img id="bg-slot-1" class="bg-layer active" src="" alt="" />
+      <img id="bg-slot-2" class="bg-layer" src="" alt="" />
     </div>
     
     <!-- Color Overlay -->
     <div id="color-overlay" class="color-overlay"></div>
     <div class="vignette"></div>
 
-    <!-- UI Overlay -->
+    <!-- UI Layer -->
     <div class="ui-layer">
       <!-- Navbar -->
       <nav class="navbar">
@@ -45,9 +47,9 @@
       </nav>
 
       <!-- Driver Info -->
-      <div class="driver-info" id="driver-info-container">
+      <div class="driver-info">
         <div class="driver-number" id="driver-number">--</div>
-        <div class="driver-name" id="driver-name">
+        <div class="driver-name">
           <div id="driver-first-name"></div>
           <div id="driver-last-name"></div>
         </div>

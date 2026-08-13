@@ -8,9 +8,13 @@ let currentImageUrl = null;
 let isPlaying = false;
 let volume = 0.5;
 
+// The foolproof active background slot tracker (1 or 2)
+let activeBgSlot = 1;
+
 // --- DOM Elements ---
 const audioPlayer = document.getElementById('audio-player');
-const bgContainer = document.getElementById('bg-container');
+const bgSlot1 = document.getElementById('bg-slot-1');
+const bgSlot2 = document.getElementById('bg-slot-2');
 const colorOverlay = document.getElementById('color-overlay');
 
 const driverNumberEl = document.getElementById('driver-number');
@@ -94,7 +98,7 @@ function playDriverConfiguration(driverIndex) {
 
     // Update DOM
     updateDOM(driver);
-    updateBackground(currentImageUrl);
+    updateBackgroundFoolproof(currentImageUrl);
     
     // Play Music
     if (currentMusic) {
@@ -127,33 +131,23 @@ function updateDOM(driver) {
   trackNameEl.textContent = currentMusic ? currentMusic.name : 'Unknown Track';
 }
 
-function updateBackground(imageUrl) {
+function updateBackgroundFoolproof(imageUrl) {
   if (!imageUrl) return;
 
-  // Find old images before adding the new one
-  const oldImages = bgContainer.querySelectorAll('.bg-image');
+  // Toggle active slot
+  const nextSlot = activeBgSlot === 1 ? 2 : 1;
+  const currentImgNode = activeBgSlot === 1 ? bgSlot1 : bgSlot2;
+  const nextImgNode = activeBgSlot === 1 ? bgSlot2 : bgSlot1;
 
-  // Create new image element
-  const img = document.createElement('img');
-  img.src = encodeURI(imageUrl);
-  img.className = 'bg-image';
-  img.style.opacity = '0';
+  // Preload new image into the hidden slot
+  nextImgNode.src = encodeURI(imageUrl);
 
-  bgContainer.appendChild(img);
+  // Crossfade
+  nextImgNode.classList.add('active');
+  currentImgNode.classList.remove('active');
 
-  // Trigger reflow
-  void img.offsetWidth;
-
-  // Fade in new image
-  img.style.opacity = '0.7';
-  
-  // Fade out and remove old images
-  oldImages.forEach(oldImg => {
-    oldImg.style.opacity = '0';
-    setTimeout(() => {
-      if (oldImg.parentNode) oldImg.parentNode.removeChild(oldImg);
-    }, 2000); // Wait for transition
-  });
+  // Update tracker
+  activeBgSlot = nextSlot;
 }
 
 // --- Player Controls ---

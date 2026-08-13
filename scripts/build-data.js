@@ -2,6 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const mm = require("music-metadata");
 
+// Since this script is now in the `scripts/` folder, the root is one level up
+const ROOT_DIR = path.join(__dirname, '..');
+
 // Helper to determine accent color from team/driver
 function getAccentColor(driverName) {
   const name = driverName.toUpperCase();
@@ -142,7 +145,7 @@ async function buildData() {
       };
     }));
 
-    const outputPath = path.join(process.cwd(), "data.json");
+    const outputPath = path.join(__dirname, "..", "data.json");
     fs.writeFileSync(outputPath, JSON.stringify({ drivers: driversData }, null, 2));
     console.log("Successfully generated data.json!");
 
