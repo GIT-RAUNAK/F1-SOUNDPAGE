@@ -59,7 +59,7 @@ async function buildData() {
       if (fs.existsSync(carModelPath)) {
         const carFiles = fs.readdirSync(carModelPath);
         if (carFiles.length > 0) {
-          carImage = `/CONTENTS/${dirName}/F1 CAR MODEL/${carFiles[0]}`;
+          carImage = `./CONTENTS/${dirName}/F1 CAR MODEL/${carFiles[0]}`;
         }
       }
 
@@ -69,7 +69,7 @@ async function buildData() {
       if (fs.existsSync(imagesPath)) {
         images = fs.readdirSync(imagesPath)
           .filter(file => file.endsWith(".jpg") || file.endsWith(".jpeg") || file.endsWith(".png"))
-          .map(file => `/CONTENTS/${dirName}/IMAGES/${file}`);
+          .map(file => `./CONTENTS/${dirName}/IMAGES/${file}`);
       }
 
       // Read SONG DETAILS.txt for custom track names
@@ -106,7 +106,7 @@ async function buildData() {
       if (fs.existsSync(musicsPath)) {
         const files = fs.readdirSync(musicsPath).filter(f => f.endsWith(".mp3") || f.endsWith(".wav"));
         musics = await Promise.all(files.map(async file => {
-          const url = `/CONTENTS/${dirName}/MUSICS/${file}`;
+          const url = `./CONTENTS/${dirName}/MUSICS/${file}`;
           let name = file.replace(".mp3", "").replace(".wav", ""); // Default e.g. "TRACK 1"
           
           // Use SONG DETAILS.txt mapping if available!
@@ -142,9 +142,9 @@ async function buildData() {
       };
     }));
 
-    const outputPath = path.join(process.cwd(), "public", "data.json");
+    const outputPath = path.join(process.cwd(), "data.json");
     fs.writeFileSync(outputPath, JSON.stringify({ drivers: driversData }, null, 2));
-    console.log("Successfully generated public/data.json!");
+    console.log("Successfully generated data.json!");
 
   } catch (error) {
     console.error("Error reading CONTENTS:", error);
