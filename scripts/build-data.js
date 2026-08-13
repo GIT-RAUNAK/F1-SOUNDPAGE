@@ -25,7 +25,16 @@ function getDriverNumber(driverName) {
   if (name.includes("NORRIS")) return 4;
   if (name.includes("PIASTRI")) return 81;
   if (name.includes("VERSTAPPEN")) return 1;
-  if (name.includes("HADJAR")) return 20; // Default/Reserve number
+  
+  if (name.includes("HADJAR")) return 6;
+  if (name.includes("LAWSON")) return 30;
+  if (name.includes("LINDBLAD")) return 41;
+  if (name.includes("GASLY")) return 10;
+  if (name.includes("COLAPINTO")) return 43;
+  if (name.includes("OCON")) return 31;
+  if (name.includes("BEARMAN")) return 87;
+  if (name.includes("HULKENBERG")) return 27;
+  
   return 0;
 }
 

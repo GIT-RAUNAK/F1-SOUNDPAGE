@@ -276,7 +276,7 @@
         }
       ],
       "accent": "#FFFFFF",
-      "driver_number": 0
+      "driver_number": 41
     },
     {
       "id": "DRIVER 11 - PIERRE GASLY",
@@ -415,7 +415,7 @@
         }
       ],
       "accent": "#FFFFFF",
-      "driver_number": 0
+      "driver_number": 10
     },
     {
       "id": "DRIVER 12 - FRANCO COLAPINTO",
@@ -554,7 +554,7 @@
         }
       ],
       "accent": "#FFFFFF",
-      "driver_number": 0
+      "driver_number": 43
     },
     {
       "id": "DRIVER 13 - ESTEBAN OCON",
@@ -693,7 +693,7 @@
         }
       ],
       "accent": "#FFFFFF",
-      "driver_number": 0
+      "driver_number": 31
     },
     {
       "id": "DRIVER 14 - OLIVER BEARMAN",
@@ -832,7 +832,7 @@
         }
       ],
       "accent": "#FFFFFF",
-      "driver_number": 0
+      "driver_number": 87
     },
     {
       "id": "DRIVER 15 - NICO HULKENBERG",
@@ -971,7 +971,7 @@
         }
       ],
       "accent": "#FFFFFF",
-      "driver_number": 0
+      "driver_number": 27
     },
     {
       "id": "DRIVER 2 - CHARLES LECLERC",
@@ -1944,7 +1944,7 @@
         }
       ],
       "accent": "#0600EF",
-      "driver_number": 20
+      "driver_number": 6
     },
     {
       "id": "DRIVER 9 - LIAM LAWSON",
@@ -2083,7 +2083,7 @@
         }
       ],
       "accent": "#FFFFFF",
-      "driver_number": 0
+      "driver_number": 30
     }
   ]
 }
